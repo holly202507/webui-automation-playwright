@@ -1,0 +1,23 @@
+environments:
+  dev:
+    base_url: "https://www.amazon.com/"
+    timeout: 30000
+  staging:
+    base_url: "https://www.amazon.com/"
+    timeout: 30000
+  prod:
+    base_url: "https://www.amazon.com/"
+    timeout: 30000
+
+default_env: dev
+
+browser:
+  headless: true
+  slow_mo: 0
+  viewport:
+    width: 1920
+    height: 1080
+
+screenshots:
+  on_failure: true
+  path: "reports/screenshots"

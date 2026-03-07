@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Playwright
+playwright/.local-browsers/
+
+# Reports
+reports/allure-results/
+reports/screenshots/
+reports/videos/
+allure-report/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

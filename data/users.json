@@ -1,0 +1,11 @@
+{
+  "valid_user": {
+    "email": "valid.registered.email@example.com",
+    "password": "validpassword123!",
+    "display_name": "display name for validation"
+  },
+  "invalid_user": {
+    "email": "not.registered.xyz999@example.com",
+    "password": "WrongPassword123!"
+  }
+}

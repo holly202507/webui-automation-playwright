@@ -1,0 +1,5 @@
+{
+  "valid_searches": ["laptop", "headphones", "running shoes", "coffee maker"],
+  "edge_cases": ["a", "123", "laptop & headphones"],
+  "no_results_expected": ["xyzzy12345noresults99999"]
+}
