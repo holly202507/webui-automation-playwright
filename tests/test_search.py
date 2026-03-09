@@ -3,7 +3,7 @@ import pytest
 
 from pages.home_page import HomePage
 from pages.search_results_page import SearchResultsPage
-from utils.helpers import load_test_data
+from utils.helpers import get_test_data
 
 
 @allure.feature("Search")
@@ -20,7 +20,7 @@ class TestSearch:
     @allure.story("Search Returns Results")
     @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.smoke
-    @pytest.mark.parametrize("term", ["laptop", "headphones", "books"])
+    @pytest.mark.parametrize("term", get_test_data("search_terms.json", "valid_searches"))
     def test_search_returns_results(self, page, term):
         home_page = HomePage(page)
         home_page.open()
@@ -50,12 +50,10 @@ class TestSearch:
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.regression
     def test_search_terms_from_data(self, page):
-        search_data = load_test_data("search_terms.json")
-
         home_page = HomePage(page)
         results_page = SearchResultsPage(page)
 
-        for term in search_data["valid_searches"]:
+        for term in get_test_data("search_terms.json", "valid_searches"):
             with allure.step(f"Search for '{term}'"):
                 home_page.open()
                 home_page.search(term)

@@ -3,7 +3,7 @@ import pytest
 
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
-from utils.helpers import get_user
+from utils.helpers import get_test_data
 
 # NOTE: Amazon actively detects automated login attempts and may present
 # CAPTCHA challenges, especially in headless/CI mode. These tests are
@@ -28,7 +28,7 @@ class TestLogin:
     @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.regression
     def test_valid_login(self, page):
-        user = get_user("valid_user")
+        user = get_test_data("users.json", "valid_user")
 
         login_page = LoginPage(page)
         login_page.open()
@@ -44,7 +44,7 @@ class TestLogin:
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.regression
     def test_invalid_password_shows_error(self, page):
-        user = get_user("valid_user")
+        user = get_test_data("users.json", "valid_user")
 
         login_page = LoginPage(page)
         login_page.open()
