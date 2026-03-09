@@ -1,0 +1,8 @@
+# BrowserStack project/build/session labels.
+# Credentials are never stored here — pass them via environment variables:
+#   BROWSERSTACK_USERNAME
+#   BROWSERSTACK_ACCESS_KEY
+
+project: "Web UI Automation"
+build: "Mobile Web Tests"
+session: "Mobile Web Session"

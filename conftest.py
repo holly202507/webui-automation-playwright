@@ -5,7 +5,24 @@ from playwright.sync_api import Page
 from core.config import config
 
 
-# --- Browser configuration fixtures ---
+# --- CLI options ---
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--mobile-device",
+        default="iphone_14",
+        help="Mobile device profile to use for mobile tests (defined in mobile/devices.yaml). "
+             "Example: --mobile-device samsung_galaxy_s23",
+    )
+
+
+@pytest.fixture(scope="session")
+def mobile_device_name(request) -> str:
+    """Session-scoped fixture that exposes the --mobile-device CLI option."""
+    return request.config.getoption("--mobile-device")
+
+
+# --- Desktop browser configuration fixtures ---
 
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args):

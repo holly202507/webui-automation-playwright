@@ -1,0 +1,30 @@
+# Mobile device profiles used by both Playwright (PR runs) and Appium (nightly real device runs).
+#
+# Playwright device names must match keys in playwright.devices:
+#   https://playwright.dev/python/docs/emulation#devices
+#
+# Appium capabilities are used for real device testing on BrowserStack.
+
+playwright:
+  iphone_14:
+    device_name: "iPhone 14"       # matches playwright.devices key
+    browser: webkit                # webkit = Safari engine on iOS
+
+  iphone_14_pro:
+    device_name: "iPhone 14 Pro"
+    browser: webkit
+
+  samsung_galaxy_s23:
+    device_name: "Galaxy S23"
+    browser: chromium              # chromium = Chrome on Android
+
+  pixel_7:
+    device_name: "Pixel 7"
+    browser: chromium
+
+appium:
+  iphone_14:
+    platform_name: iOS
+    device_name: iPhone 14
+    platform_version: "16"
+    browser: Safari                # real Safari engine on real device

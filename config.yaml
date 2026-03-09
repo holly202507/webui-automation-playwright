@@ -21,3 +21,11 @@ browser:
 screenshots:
   on_failure: true
   path: "reports/screenshots"
+
+# Mobile test settings
+# Device profiles are defined in mobile/devices.yaml
+# BrowserStack credentials must be set as environment variables:
+#   BROWSERSTACK_USERNAME
+#   BROWSERSTACK_ACCESS_KEY
+mobile:
+  default_device: iphone_14
