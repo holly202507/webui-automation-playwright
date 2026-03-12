@@ -2,18 +2,26 @@ import allure
 from playwright.sync_api import Page
 
 from core.base_page import BasePage
+from locator.desktop.search_results_page_locator import SearchResultsPageLocator
 
 
 class SearchResultsPage(BasePage):
     """Amazon search results page object."""
 
-    def __init__(self, page: Page):
-        super().__init__(page)
-        self.results = page.locator("[data-component-type='s-search-result']")
-        self.result_titles = page.locator("h2 .a-link-normal .a-text-normal")
-        self.total_results_label = page.locator(".a-section .a-color-state")
-        self.no_results_message = page.locator(".s-no-outline")
-        self.search_input = page.locator("#twotabsearchtab")
+    @property
+    def results(self): return self.page.locator(SearchResultsPageLocator.RESULTS)
+
+    @property
+    def result_titles(self): return self.page.locator(SearchResultsPageLocator.RESULT_TITLES)
+
+    @property
+    def total_results_label(self): return self.page.locator(SearchResultsPageLocator.TOTAL_RESULTS_LABEL)
+
+    @property
+    def no_results_message(self): return self.page.locator(SearchResultsPageLocator.NO_RESULTS_MESSAGE)
+
+    @property
+    def search_input(self): return self.page.locator(SearchResultsPageLocator.SEARCH_INPUT)
 
     @allure.step("Verify search results page is loaded")
     def verify_loaded(self) -> "SearchResultsPage":
@@ -36,7 +44,7 @@ class SearchResultsPage(BasePage):
 
     @allure.step("Click on result at index {index}")
     def click_result(self, index: int = 0) -> None:
-        self.results.nth(index).locator("h2 a").click()
+        self.results.nth(index).locator(SearchResultsPageLocator.RESULT_LINK).click()
 
     def results_contain_keyword(self, keyword: str) -> bool:
         titles = self.get_result_titles()

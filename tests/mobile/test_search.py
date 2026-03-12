@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from pages.home_page import HomePage
-from pages.search_results_page import SearchResultsPage
+from pageobject.mobile.home_page import MobileHomePage as HomePage
+from pageobject.mobile.search_results_page import MobileSearchResultsPage as SearchResultsPage
 from utils.helpers import get_test_data
 
 

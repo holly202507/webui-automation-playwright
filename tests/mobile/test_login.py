@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from pages.home_page import HomePage
-from pages.login_page import LoginPage
+from pageobject.mobile.home_page import MobileHomePage as HomePage
+from pageobject.mobile.login_page import MobileLoginPage as LoginPage
 from utils.helpers import get_test_data
 
 

@@ -2,18 +2,29 @@ import allure
 from playwright.sync_api import Page
 
 from core.base_page import BasePage
+from locator.desktop.home_page_locator import HomePageLocator
 
 
 class HomePage(BasePage):
     """Amazon homepage page object."""
 
-    def __init__(self, page: Page):
-        super().__init__(page)
-        self.search_input = page.locator("#twotabsearchtextbox")
-        self.search_button = page.locator("#nav-search-submit-button")
-        self.account_link = page.locator("#nav-link-accountList")
-        self.logo = page.locator("#nav-logo-sprites, #nav-bb-logo")
-        self.nav_cart = page.locator("#nav-cart")
+    @property
+    def search_input(self): return self.page.locator(HomePageLocator.SEARCH_INPUT)
+
+    @property
+    def search_button(self): return self.page.locator(HomePageLocator.SEARCH_BUTTON)
+
+    @property
+    def account_link(self): return self.page.locator(HomePageLocator.ACCOUNT_LINK)
+
+    @property
+    def logo(self): return self.page.locator(HomePageLocator.LOGO)
+
+    @property
+    def nav_cart(self): return self.page.locator(HomePageLocator.NAV_CART)
+
+    @property
+    def flyout_signin(self): return self.page.locator(HomePageLocator.FLYOUT_SIGNIN).first
 
     @allure.step("Open Amazon homepage")
     def open(self) -> "HomePage":
@@ -33,10 +44,9 @@ class HomePage(BasePage):
 
     @allure.step("Go to sign in via account flyout")
     def go_to_signin(self) -> None:
-        flyout_signin = self.page.locator("#nav-flyout-ya-signin a").first
         self.hover(self.account_link, "Hello, Sign in")
-        self.expect_visible(flyout_signin, "Sign in flyout button")
-        self.click(flyout_signin, "Sign in flyout button")
+        self.expect_visible(self.flyout_signin, "Sign in flyout button")
+        self.click(self.flyout_signin, "Sign in flyout button")
 
     def get_account_label(self) -> str:
         return self.get_text(self.account_link)

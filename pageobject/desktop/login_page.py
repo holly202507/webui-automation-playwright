@@ -2,6 +2,7 @@ import allure
 from playwright.sync_api import Page
 
 from core.base_page import BasePage
+from locator.desktop.login_page_locator import LoginPageLocator
 
 
 class LoginPage(BasePage):
@@ -20,22 +21,26 @@ class LoginPage(BasePage):
     in on every test run.
     """
 
-    def __init__(self, page: Page):
-        super().__init__(page)
-        # Homepage — account nav trigger and flyout sign-in link
-        self.account_nav_link = page.locator("#nav-link-accountList")
-        self.flyout_signin_link = page.locator("#nav-flyout-ya-signin a").first
+    @property
+    def account_nav_link(self): return self.page.locator(LoginPageLocator.ACCOUNT_NAV_LINK)
 
-        # Step 1 — email
-        self.email_input = page.locator("#ap_email_login")
-        self.continue_button = page.locator("#continue > span > input")
+    @property
+    def flyout_signin_link(self): return self.page.locator(LoginPageLocator.FLYOUT_SIGNIN_LINK).first
 
-        # Step 2 — password
-        self.password_input = page.locator("#ap_password")
-        self.signin_button = page.locator("#signInSubmit")
+    @property
+    def email_input(self): return self.page.locator(LoginPageLocator.EMAIL_INPUT)
 
-        # Error
-        self.error_box = page.locator("#auth-error-message-box")
+    @property
+    def continue_button(self): return self.page.locator(LoginPageLocator.CONTINUE_BUTTON)
+
+    @property
+    def password_input(self): return self.page.locator(LoginPageLocator.PASSWORD_INPUT)
+
+    @property
+    def signin_button(self): return self.page.locator(LoginPageLocator.SIGNIN_BUTTON)
+
+    @property
+    def error_box(self): return self.page.locator(LoginPageLocator.ERROR_BOX)
 
     @allure.step("Open Amazon sign-in page via homepage")
     def open(self) -> "LoginPage":

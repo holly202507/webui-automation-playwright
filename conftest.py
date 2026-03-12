@@ -29,7 +29,7 @@ def browser_context_args(browser_context_args):
     """Override default Playwright browser context with values from config."""
     bc = config.browser_config
     return {
-        **browser_context_args,
+        **browser_context_args,  # keep existing defaults
         "viewport": {"width": bc.viewport_width, "height": bc.viewport_height},
     }
 
@@ -39,7 +39,7 @@ def browser_type_launch_args(browser_type_launch_args):
     """Override default Playwright browser launch args with values from config."""
     bc = config.browser_config
     return {
-        **browser_type_launch_args,
+        **browser_type_launch_args,  # keep existing defaults
         "headless": bc.headless,
         "slow_mo": bc.slow_mo,
     }

@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from pages.home_page import HomePage
-from pages.login_page import LoginPage
+from pageobject.desktop.home_page import HomePage
+from pageobject.desktop.login_page import LoginPage
 from utils.helpers import get_test_data
 
 # NOTE: Amazon actively detects automated login attempts and may present
